@@ -152,6 +152,8 @@ bool PlanningRequestAdapterChain::adaptAndPlan(const planning_interface::Planner
     bool result = fn(planning_scene, req, res);
     added_path_index.clear();
 
+    ROS_INFO("in PlanningRequestAdapterChain::adaptAndPlan");
+
     // merge the index values from each adapter
     for (std::size_t i = 0; i < added_path_index_each.size(); ++i)
       for (std::size_t j = 0; j < added_path_index_each[i].size(); ++j)

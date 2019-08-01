@@ -114,6 +114,7 @@ void planning_pipeline::PlanningPipeline::configure()
   try
   {
     planner_instance_.reset(planner_plugin_loader_->createUnmanagedInstance(planner_plugin_name_));
+    ROS_INFO_STREAM("Using planning interface plugin '" << planner_plugin_name_ << "'");
     if (!planner_instance_->initialize(kmodel_, nh_.getNamespace()))
       throw std::runtime_error("Unable to initialize planning plugin");
     ROS_INFO_STREAM("Using planning interface '" << planner_instance_->getDescription() << "'");
@@ -339,6 +340,7 @@ bool planning_pipeline::PlanningPipeline::generatePlan(const planning_scene::Pla
     display_path_publisher_.publish(disp);
   }
 
+  ROS_INFO("Finish planning_pipeline::PlanningPipeline::generatePlan");
   return solved && valid;
 }
 

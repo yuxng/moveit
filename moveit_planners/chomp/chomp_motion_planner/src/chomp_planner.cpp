@@ -264,6 +264,8 @@ bool ChompPlanner::solve(const planning_scene::PlanningSceneConstPtr& planning_s
     res.trajectory[0].joint_trajectory.points[i].time_from_start = ros::Duration(0.0);
   }
 
+  res.trajectory_start = req.start_state;
+
   ROS_DEBUG_NAMED("chomp_planner", "Bottom took %f sec to create", (ros::WallTime::now() - create_time).toSec());
   ROS_DEBUG_NAMED("chomp_planner", "Serviced planning request in %f wall-seconds, trajectory duration is %f",
                   (ros::WallTime::now() - start_time).toSec(),
@@ -298,6 +300,7 @@ bool ChompPlanner::solve(const planning_scene::PlanningSceneConstPtr& planning_s
     }
   }
 
+  ROS_INFO("Finish ChompPlanner::solve");
   return true;
 }
 }
